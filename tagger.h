@@ -5,6 +5,7 @@
 #include <QString>
 #include <QList>
 #include <tag.h>
+#include <QDebug>
 
 class Tagger
 {
@@ -26,10 +27,11 @@ public:
 
 private:
     QList<Tag*> tags;
-    QMap<QString,  QList<Tag*>> filesTags;
+    QMap<QString,  QList<Tag**>> filesTags;
 
     Tag* getTagFromName(QString tagName);
     bool fileAlreadyAdded(QString fileName);
+    bool tagPresentInList(Tag* tag);
 };
 
 #endif // TAGGER_H

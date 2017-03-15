@@ -8,13 +8,22 @@ Tagger::Tagger()
 Tagger::~Tagger(){
     foreach(Tag* tag, tags){
         delete tag;
+        tag = NULL;
+    }
+
+    foreach(QList<Tag**> fTags, filesTags.values()){
+        foreach(Tag** tag, fTags){
+            if(tag != NULL)
+                delete tag;
+            tag = NULL;
+        }
     }
 }
 
 /* main functions */
 
 bool Tagger::tagFile(QString filePath, QString tagName){
-    QList<Tag*> tagList;
+    QList<Tag**> tagList;
 
     //retrieve tag
     Tag* tag = getTagFromName(tagName);
@@ -26,14 +35,35 @@ bool Tagger::tagFile(QString filePath, QString tagName){
         tagList = filesTags.find(filePath).value();
     }
 
-    tagList.append(tag);
+    Tag** ptTag = (Tag**)malloc(sizeof(Tag*));
+    *ptTag = tag;
+
+    tagList.append(ptTag);
     filesTags.insert(filePath, tagList);
 
     return true;
 }
 
 bool Tagger::untagFile(QString filePath, QString tagName){
+    //file doesn't exist, return
+    if(!fileAlreadyAdded(filePath))
+        return false;
 
+    //loop through file tags, if tag is present, remove it
+    //from the list, then free the space used for it
+    QList<Tag**> tagList = filesTags.find(filePath).value();
+    foreach(Tag** ptT, tagList){
+        if((*ptT)->getName() == tagName){
+            tagList.removeOne(ptT);
+            free(ptT);
+            ptT = NULL;
+        }
+    }
+
+    //update the file tags list
+    filesTags.insert(filePath, tagList);
+
+    return true;
 }
 
 bool Tagger::addNewTag(QString tagName){
@@ -61,7 +91,9 @@ bool Tagger::removeTag(QString tagName){
 
     //then remove the tag from available ones
     tags.removeAt(tags.indexOf(tag));
+
     delete tag;
+    tag = NULL;
 
     return true;
 }
@@ -98,26 +130,44 @@ QList<QString> Tagger::getTagsOfFile(QString fileName){
     if(!fileAlreadyAdded(fileName)) return tagNamesList;
 
     //retrieve tags list
-    QList<Tag*> tagList = filesTags.find(fileName).value();
+    QList<Tag**> tagList = filesTags.find(fileName).value();
 
     //if while retrieving file tags, we found a tag that has
     //been deleted, then we update the tag list
     for(int i = 0; i < tagList.length(); i++){
-        if(tagList.at(i) == NULL)
+        if(!tagPresentInList(*tagList.at(i))){
             tagList.removeAt(i);
+        }
     }
     //update the file tags
     filesTags.insert(fileName, tagList);
 
     //create the list of tag names
-    foreach(Tag* tag, tagList){
-        tagNamesList.append(tag->getName());
+    foreach(Tag** tag, tagList){
+        tagNamesList.append((*tag)->getName());
     }
     return tagNamesList;
 }
 
 QList<QString> Tagger::searchFilesFromTag(QString tagName){
+    Tag* tag = getTagFromName(tagName);
+    QList<QString> files;
 
+    //tag doesn't exists, return
+    if(tag != NULL){
+        QMapIterator<QString, QList<Tag**>> it(filesTags);
+        while (it.hasNext()) {
+            it.next();
+            foreach(Tag** t, it.value()){
+                if((*t)->getName() == tagName){
+                    files.append(it.key());
+                    break;
+                }
+            }
+        }
+    }
+
+    return files;
 }
 
 /* utility */
@@ -140,6 +190,14 @@ Tag* Tagger::getTagFromName(QString tagName){
 bool Tagger::fileAlreadyAdded(QString fileName){
     foreach(QString file, filesTags.keys()){
         if(file == fileName)
+            return true;
+    }
+    return false;
+}
+
+bool Tagger::tagPresentInList(Tag* tag){
+    foreach(Tag* t, tags){
+        if(t == tag)
             return true;
     }
     return false;
