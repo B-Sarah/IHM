@@ -8,9 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     model = new QFileSystemModel(this);
-    model->setReadOnly(false);
-    ui->treeView->setModel(model);
-
 
 }
 
@@ -18,4 +15,25 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete model;
+}
+
+void MainWindow::initFsModel(){
+    model->setRootPath("/home/salex/");
+    model->setReadOnly(false);
+     model->setFilter(QDir::NoDotAndDotDot|QDir::Dirs);
+
+    ui->treeView->setModel(model);
+    ui->treeView->setColumnHidden(1,true);
+    ui->treeView->setColumnHidden(2,true);
+    ui->treeView->setColumnHidden(3,true);
+
+
+
+
+}
+
+void MainWindow::initTabBar(){
+    ui->tabWidget->setTabEnabled(2,false);
+    ui->tabWidget->setTabText(2,"");
+
 }

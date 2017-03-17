@@ -65,17 +65,37 @@
       <height>720</height>
      </size>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">QTabBar::tab{height:40px; width:350px}
+     <string notr="true">QTabBar::tab{height:40px; width:347px}
+QTabBar::tab:selected{background-color:white;}
 QTabBar::tab:last { height:40px; width:60px;}
+QTabBar::tab:disabled { border:none;width:286px}
 var _tab = mywindow.findChild(&quot;_tab&quot;);
+
 </string>
     </property>
     <property name="tabPosition">
      <enum>QTabWidget::North</enum>
     </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
     <property name="currentIndex">
      <number>0</number>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>45</width>
+      <height>35</height>
+     </size>
+    </property>
+    <property name="elideMode">
+     <enum>Qt::ElideNone</enum>
     </property>
     <widget class="QWidget" name="tag">
      <property name="styleSheet">
@@ -120,31 +140,17 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>85</x>
+        <x>80</x>
         <y>10</y>
-        <width>661</width>
+        <width>688</width>
         <height>25</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QFrame" name="frame">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>430</y>
-        <width>746</width>
-        <height>241</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:white;
-</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+      <property name="minimumSize">
+       <size>
+        <width>628</width>
+        <height>25</height>
+       </size>
       </property>
      </widget>
      <widget class="QFrame" name="frame_2">
@@ -166,16 +172,115 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>241</width>
+         <height>154</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="newTag">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>New tag</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="EditTag">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Edit tag</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removeTag">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Remove tag(s)</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <zorder>EditTag</zorder>
+      <zorder>removeTag</zorder>
+      <zorder>newTag</zorder>
+      <zorder>newTag</zorder>
+      <zorder>EditTag</zorder>
      </widget>
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
-        <x>754</x>
+        <x>775</x>
         <y>10</y>
-        <width>272</width>
+        <width>251</width>
         <height>25</height>
        </rect>
       </property>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>430</y>
+        <width>746</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:white;
+</string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>744</width>
+         <height>239</height>
+        </rect>
+       </property>
+       <widget class="QFrame" name="frame">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>746</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </widget>
      </widget>
      <widget class="QWidget" name="">
       <property name="geometry">
@@ -220,15 +325,27 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
       <string>File filtering</string>
      </attribute>
     </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string/>
+     </attribute>
+    </widget>
     <widget class="QWidget" name="para">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
      <property name="layoutDirection">
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">padding-right:40pt;qt sqt ttab q</string>
+      <string notr="true"/>
      </property>
+     <attribute name="icon">
+      <iconset>
+       <normaloff>preferences.png</normaloff>preferences.png</iconset>
+     </attribute>
      <attribute name="title">
-      <string>Page</string>
+      <string/>
      </attribute>
     </widget>
    </widget>
