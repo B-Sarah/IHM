@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QDebug>
 #include "tagger.h"
+#include "visitstack.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,12 +13,12 @@ int main(int argc, char *argv[])
 
     w.show();
 
-    Tagger tagger;
+    /*Tagger tagger;
 
     qDebug() << "Recherche du tag Photo2016";
     foreach(QString file, tagger.searchFilesFromTag("Photo2016")){
         qDebug() << file;
-    }
+    }*/
 
     return a.exec();
 }

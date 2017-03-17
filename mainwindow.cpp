@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initFsModel(){
-    model->setRootPath("/home/salex/");
+    model->setRootPath("/");
     model->setReadOnly(false);
      model->setFilter(QDir::NoDotAndDotDot|QDir::Dirs);
 
