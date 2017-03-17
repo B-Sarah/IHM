@@ -120,9 +120,9 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>105</x>
+        <x>85</x>
         <y>10</y>
-        <width>641</width>
+        <width>661</width>
         <height>25</height>
        </rect>
       </property>
@@ -177,31 +177,39 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>10</y>
-        <width>41</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>next</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>41</width>
-        <height>25</height>
+        <width>64</width>
+        <height>26</height>
        </rect>
       </property>
-      <property name="text">
-       <string>back</string>
-      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="back">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>back.png</normaloff>back.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="next">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>next.png</normaloff>next.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tabFilter">
