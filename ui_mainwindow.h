@@ -46,13 +46,17 @@ public:
     QPushButton *newTag;
     QPushButton *EditTag;
     QPushButton *removeTag;
-    QLineEdit *lineEdit_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QFrame *frame;
     QLabel *label;
     QComboBox *comboBox;
+    QFrame *frame_3;
     QLineEdit *lineEdit_3;
+    QLabel *label_2;
+    QFrame *frame_4;
+    QLineEdit *lineEdit_4;
+    QLabel *label_4;
     QWidget *widget1;
     QHBoxLayout *horizontalLayout;
     QPushButton *back;
@@ -103,7 +107,7 @@ public:
         treeView->setGeometry(QRect(10, 40, 261, 451));
         listView = new QListView(tag);
         listView->setObjectName(QStringLiteral("listView"));
-        listView->setGeometry(QRect(280, 40, 746, 381));
+        listView->setGeometry(QRect(278, 40, 746, 381));
         listView->setMinimumSize(QSize(746, 381));
         listView->setMaximumSize(QSize(746, 381));
         lineEdit = new QLineEdit(tag);
@@ -148,9 +152,6 @@ public:
         newTag->raise();
         newTag->raise();
         EditTag->raise();
-        lineEdit_2 = new QLineEdit(tag);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(775, 10, 251, 25));
         scrollArea = new QScrollArea(tag);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setGeometry(QRect(280, 430, 746, 241));
@@ -170,12 +171,41 @@ public:
         label->setGeometry(QRect(10, 6, 81, 21));
         comboBox = new QComboBox(frame);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(705, 0, 41, 31));
+        comboBox->setGeometry(QRect(695, 0, 51, 31));
         comboBox->setEditable(true);
-        lineEdit_3 = new QLineEdit(frame);
+        frame_3 = new QFrame(frame);
+        frame_3->setObjectName(QStringLiteral("frame_3"));
+        frame_3->setGeometry(QRect(460, 0, 235, 31));
+        frame_3->setFrameShape(QFrame::StyledPanel);
+        frame_3->setFrameShadow(QFrame::Raised);
+        lineEdit_3 = new QLineEdit(frame_3);
         lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(515, 0, 191, 31));
+        lineEdit_3->setGeometry(QRect(20, 5, 213, 21));
+        lineEdit_3->setStyleSheet(QStringLiteral("border:0;"));
+        lineEdit_3->setCursorPosition(0);
+        lineEdit_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        label_2 = new QLabel(frame_3);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(1, 5, 21, 21));
+        label_2->setPixmap(QPixmap(QString::fromUtf8("search.png")));
+        label_2->setScaledContents(true);
         scrollArea->setWidget(scrollAreaWidgetContents);
+        frame_4 = new QFrame(tag);
+        frame_4->setObjectName(QStringLiteral("frame_4"));
+        frame_4->setGeometry(QRect(774, 10, 251, 25));
+        frame_4->setFrameShape(QFrame::StyledPanel);
+        frame_4->setFrameShadow(QFrame::Raised);
+        lineEdit_4 = new QLineEdit(frame_4);
+        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        lineEdit_4->setGeometry(QRect(20, 5, 213, 16));
+        lineEdit_4->setStyleSheet(QStringLiteral("border:0;"));
+        lineEdit_4->setCursorPosition(0);
+        lineEdit_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        label_4 = new QLabel(frame_4);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(1, 4, 21, 19));
+        label_4->setPixmap(QPixmap(QString::fromUtf8("search.png")));
+        label_4->setScaledContents(true);
         widget1 = new QWidget(tag);
         widget1->setObjectName(QStringLiteral("widget1"));
         widget1->setGeometry(QRect(10, 10, 64, 26));
@@ -201,6 +231,17 @@ public:
         horizontalLayout->addWidget(next);
 
         tabWidget->addTab(tag, QString());
+        treeView->raise();
+        listView->raise();
+        lineEdit->raise();
+        frame_2->raise();
+        next->raise();
+        back->raise();
+        scrollArea->raise();
+        label_2->raise();
+        frame_4->raise();
+        lineEdit_4->raise();
+        lineEdit_4->raise();
         tabFilter = new QWidget();
         tabFilter->setObjectName(QStringLiteral("tabFilter"));
         tabFilter->setStyleSheet(QStringLiteral(""));
@@ -223,7 +264,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -234,9 +275,13 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         newTag->setText(QApplication::translate("MainWindow", "New tag", Q_NULLPTR));
         EditTag->setText(QApplication::translate("MainWindow", "Edit tag", Q_NULLPTR));
-        removeTag->setText(QApplication::translate("MainWindow", "Remove tag(s)", Q_NULLPTR));
+        removeTag->setText(QApplication::translate("MainWindow", "Remove tag", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "<html><head/><body><p>List of  tags</p></body></html>", Q_NULLPTR));
-        comboBox->setCurrentText(QApplication::translate("MainWindow", "A", Q_NULLPTR));
+        comboBox->setCurrentText(QApplication::translate("MainWindow", "A-Z", Q_NULLPTR));
+        lineEdit_3->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
+        label_2->setText(QString());
+        lineEdit_4->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
+        label_4->setText(QString());
         back->setText(QString());
         next->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tag), QApplication::translate("MainWindow", "File tagging ", Q_NULLPTR));

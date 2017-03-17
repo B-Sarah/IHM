@@ -86,7 +86,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -118,7 +118,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <widget class="QListView" name="listView">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>278</x>
         <y>40</y>
         <width>746</width>
         <height>381</height>
@@ -217,7 +217,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
            </size>
           </property>
           <property name="text">
-           <string>Remove tag(s)</string>
+           <string>Remove tag</string>
           </property>
          </widget>
         </item>
@@ -228,16 +228,6 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
       <zorder>newTag</zorder>
       <zorder>newTag</zorder>
       <zorder>EditTag</zorder>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="geometry">
-       <rect>
-        <x>775</x>
-        <y>10</y>
-        <width>251</width>
-        <height>25</height>
-       </rect>
-      </property>
      </widget>
      <widget class="QScrollArea" name="scrollArea">
       <property name="geometry">
@@ -295,9 +285,9 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
         <widget class="QComboBox" name="comboBox">
          <property name="geometry">
           <rect>
-           <x>705</x>
+           <x>695</x>
            <y>0</y>
-           <width>41</width>
+           <width>51</width>
            <height>31</height>
           </rect>
          </property>
@@ -305,20 +295,124 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           <bool>true</bool>
          </property>
          <property name="currentText">
-          <string>A</string>
+          <string>A-Z</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QFrame" name="frame_3">
          <property name="geometry">
           <rect>
-           <x>515</x>
+           <x>460</x>
            <y>0</y>
-           <width>191</width>
+           <width>235</width>
            <height>31</height>
           </rect>
          </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLineEdit" name="lineEdit_3">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>5</y>
+            <width>213</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border:0;</string>
+          </property>
+          <property name="cursorPosition">
+           <number>0</number>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>Search</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>1</x>
+            <y>5</y>
+            <width>21</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>search.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
        </widget>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="frame_4">
+      <property name="geometry">
+       <rect>
+        <x>774</x>
+        <y>10</y>
+        <width>251</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLineEdit" name="lineEdit_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>5</y>
+         <width>213</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:0;</string>
+       </property>
+       <property name="cursorPosition">
+        <number>0</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Search</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>1</x>
+         <y>4</y>
+         <width>21</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>search.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="">
@@ -355,6 +449,17 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
        </item>
       </layout>
      </widget>
+     <zorder>treeView</zorder>
+     <zorder>listView</zorder>
+     <zorder>lineEdit</zorder>
+     <zorder>frame_2</zorder>
+     <zorder>next</zorder>
+     <zorder>back</zorder>
+     <zorder>scrollArea</zorder>
+     <zorder>label_2</zorder>
+     <zorder>frame_4</zorder>
+     <zorder>lineEdit_4</zorder>
+     <zorder>lineEdit_4</zorder>
     </widget>
     <widget class="QWidget" name="tabFilter">
      <property name="styleSheet">
