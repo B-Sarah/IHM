@@ -282,7 +282,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List of  tags&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="sortTag">
          <property name="geometry">
           <rect>
            <x>695</x>
@@ -297,6 +297,16 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
          <property name="currentText">
           <string>A-Z</string>
          </property>
+         <item>
+          <property name="text">
+           <string>A-Z</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Z-A</string>
+          </property>
+         </item>
         </widget>
         <widget class="QFrame" name="frame_3">
          <property name="geometry">
@@ -313,7 +323,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QLineEdit" name="lineEdit_3">
+         <widget class="QLineEdit" name="searchTag">
           <property name="geometry">
            <rect>
             <x>20</x>
@@ -363,7 +373,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
        <rect>
         <x>774</x>
         <y>10</y>
-        <width>251</width>
+        <width>250</width>
         <height>25</height>
        </rect>
       </property>
@@ -373,7 +383,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLineEdit" name="lineEdit_4">
+      <widget class="QLineEdit" name="searchFile">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -458,8 +468,8 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <zorder>scrollArea</zorder>
      <zorder>label_2</zorder>
      <zorder>frame_4</zorder>
-     <zorder>lineEdit_4</zorder>
-     <zorder>lineEdit_4</zorder>
+     <zorder>searchFile</zorder>
+     <zorder>searchFile</zorder>
     </widget>
     <widget class="QWidget" name="tabFilter">
      <property name="styleSheet">

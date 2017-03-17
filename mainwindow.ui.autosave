@@ -297,6 +297,16 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
          <property name="currentText">
           <string>A-Z</string>
          </property>
+         <item>
+          <property name="text">
+           <string>A-Z</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Z-A</string>
+          </property>
+         </item>
         </widget>
         <widget class="QFrame" name="frame_3">
          <property name="geometry">
@@ -354,6 +364,43 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
            <bool>true</bool>
           </property>
          </widget>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>0</y>
+           <width>108</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="back_2">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>undo-512.png</normaloff>undo-512.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="next_2">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>next.png</normaloff>next.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </widget>
       </widget>
