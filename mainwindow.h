@@ -14,6 +14,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void initFsModel();
+    void initTabBar();
 
 private:
     Ui::MainWindow *ui;

@@ -20,9 +20,11 @@
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTreeView>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -36,14 +38,22 @@ public:
     QTreeView *treeView;
     QListView *listView;
     QLineEdit *lineEdit;
-    QFrame *frame;
     QFrame *frame_2;
-    QLineEdit *lineEdit_2;
     QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QPushButton *newTag;
+    QPushButton *EditTag;
+    QPushButton *removeTag;
+    QLineEdit *lineEdit_2;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QFrame *frame;
+    QWidget *widget1;
     QHBoxLayout *horizontalLayout;
     QPushButton *back;
     QPushButton *next;
     QWidget *tabFilter;
+    QWidget *tab;
     QWidget *para;
     QStatusBar *statusBar;
 
@@ -65,11 +75,20 @@ public:
         tabWidget->setGeometry(QRect(0, 0, 1040, 720));
         tabWidget->setMinimumSize(QSize(1040, 720));
         tabWidget->setMaximumSize(QSize(1040, 720));
-        tabWidget->setStyleSheet(QLatin1String("QTabBar::tab{height:40px; width:350px}\n"
+        QFont font;
+        font.setPointSize(13);
+        tabWidget->setFont(font);
+        tabWidget->setStyleSheet(QLatin1String("QTabBar::tab{height:40px; width:347px}\n"
+"QTabBar::tab:selected{background-color:white;}\n"
 "QTabBar::tab:last { height:40px; width:60px;}\n"
+"QTabBar::tab:disabled { border:none;width:286px}\n"
 "var _tab = mywindow.findChild(\"_tab\");\n"
+"\n"
 ""));
         tabWidget->setTabPosition(QTabWidget::North);
+        tabWidget->setTabShape(QTabWidget::Rounded);
+        tabWidget->setIconSize(QSize(45, 35));
+        tabWidget->setElideMode(Qt::ElideNone);
         tag = new QWidget();
         tag->setObjectName(QStringLiteral("tag"));
         tag->setStyleSheet(QLatin1String("background-color:white;\n"
@@ -84,14 +103,8 @@ public:
         listView->setMaximumSize(QSize(746, 381));
         lineEdit = new QLineEdit(tag);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(85, 10, 661, 25));
-        frame = new QFrame(tag);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(280, 430, 746, 241));
-        frame->setStyleSheet(QLatin1String("background-color:white;\n"
-""));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
+        lineEdit->setGeometry(QRect(80, 10, 688, 25));
+        lineEdit->setMinimumSize(QSize(628, 25));
         frame_2 = new QFrame(tag);
         frame_2->setObjectName(QStringLiteral("frame_2"));
         frame_2->setGeometry(QRect(10, 499, 261, 171));
@@ -99,18 +112,64 @@ public:
 ""));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
+        widget = new QWidget(frame_2);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(10, 10, 241, 154));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        newTag = new QPushButton(widget);
+        newTag->setObjectName(QStringLiteral("newTag"));
+        newTag->setMinimumSize(QSize(0, 45));
+
+        verticalLayout->addWidget(newTag);
+
+        EditTag = new QPushButton(widget);
+        EditTag->setObjectName(QStringLiteral("EditTag"));
+        EditTag->setMinimumSize(QSize(0, 45));
+
+        verticalLayout->addWidget(EditTag);
+
+        removeTag = new QPushButton(widget);
+        removeTag->setObjectName(QStringLiteral("removeTag"));
+        removeTag->setMinimumSize(QSize(0, 50));
+
+        verticalLayout->addWidget(removeTag);
+
+        EditTag->raise();
+        removeTag->raise();
+        newTag->raise();
+        newTag->raise();
+        EditTag->raise();
         lineEdit_2 = new QLineEdit(tag);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(754, 10, 272, 25));
-        widget = new QWidget(tag);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 64, 26));
-        horizontalLayout = new QHBoxLayout(widget);
+        lineEdit_2->setGeometry(QRect(775, 10, 251, 25));
+        scrollArea = new QScrollArea(tag);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setGeometry(QRect(280, 430, 746, 241));
+        scrollArea->setStyleSheet(QLatin1String("background-color:white;\n"
+""));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 744, 239));
+        frame = new QFrame(scrollAreaWidgetContents);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setGeometry(QRect(0, 0, 746, 31));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        scrollArea->setWidget(scrollAreaWidgetContents);
+        widget1 = new QWidget(tag);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        widget1->setGeometry(QRect(10, 10, 64, 26));
+        horizontalLayout = new QHBoxLayout(widget1);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        back = new QPushButton(widget);
+        back = new QPushButton(widget1);
         back->setObjectName(QStringLiteral("back"));
         QIcon icon;
         icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -118,7 +177,7 @@ public:
 
         horizontalLayout->addWidget(back);
 
-        next = new QPushButton(widget);
+        next = new QPushButton(widget1);
         next->setObjectName(QStringLiteral("next"));
         QIcon icon1;
         icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -131,11 +190,17 @@ public:
         tabFilter->setObjectName(QStringLiteral("tabFilter"));
         tabFilter->setStyleSheet(QStringLiteral(""));
         tabWidget->addTab(tabFilter, QString());
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
+        tabWidget->addTab(tab, QString());
         para = new QWidget();
         para->setObjectName(QStringLiteral("para"));
+        para->setContextMenuPolicy(Qt::CustomContextMenu);
         para->setLayoutDirection(Qt::LeftToRight);
-        para->setStyleSheet(QStringLiteral("padding-right:40pt;qt sqt ttab q"));
-        tabWidget->addTab(para, QString());
+        para->setStyleSheet(QStringLiteral(""));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral("preferences.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(para, icon2, QString());
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -152,11 +217,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        newTag->setText(QApplication::translate("MainWindow", "New tag", Q_NULLPTR));
+        EditTag->setText(QApplication::translate("MainWindow", "Edit tag", Q_NULLPTR));
+        removeTag->setText(QApplication::translate("MainWindow", "Remove tag(s)", Q_NULLPTR));
         back->setText(QString());
         next->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tag), QApplication::translate("MainWindow", "File tagging ", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tabFilter), QApplication::translate("MainWindow", "File filtering", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(para), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QString());
+        tabWidget->setTabText(tabWidget->indexOf(para), QString());
     } // retranslateUi
 
 };
