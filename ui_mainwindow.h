@@ -41,7 +41,7 @@ public:
     QListView *listView;
     QLineEdit *lineEdit;
     QFrame *frame_2;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *newTag;
     QPushButton *EditTag;
@@ -50,14 +50,14 @@ public:
     QWidget *scrollAreaWidgetContents;
     QFrame *frame;
     QLabel *label;
-    QComboBox *comboBox;
+    QComboBox *sortTag;
     QFrame *frame_3;
-    QLineEdit *lineEdit_3;
+    QLineEdit *searchTag;
     QLabel *label_2;
     QFrame *frame_4;
-    QLineEdit *lineEdit_4;
+    QLineEdit *searchFile;
     QLabel *label_4;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QPushButton *back;
     QPushButton *next;
@@ -121,37 +121,32 @@ public:
 ""));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
-        widget = new QWidget(frame_2);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 241, 154));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(frame_2);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 241, 154));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        newTag = new QPushButton(widget);
+        newTag = new QPushButton(layoutWidget);
         newTag->setObjectName(QStringLiteral("newTag"));
         newTag->setMinimumSize(QSize(0, 45));
 
         verticalLayout->addWidget(newTag);
 
-        EditTag = new QPushButton(widget);
+        EditTag = new QPushButton(layoutWidget);
         EditTag->setObjectName(QStringLiteral("EditTag"));
         EditTag->setMinimumSize(QSize(0, 45));
 
         verticalLayout->addWidget(EditTag);
 
-        removeTag = new QPushButton(widget);
+        removeTag = new QPushButton(layoutWidget);
         removeTag->setObjectName(QStringLiteral("removeTag"));
         removeTag->setMinimumSize(QSize(0, 50));
 
         verticalLayout->addWidget(removeTag);
 
-        EditTag->raise();
-        removeTag->raise();
-        newTag->raise();
-        newTag->raise();
-        EditTag->raise();
         scrollArea = new QScrollArea(tag);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setGeometry(QRect(280, 430, 746, 241));
@@ -169,21 +164,21 @@ public:
         label = new QLabel(frame);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(10, 6, 81, 21));
-        comboBox = new QComboBox(frame);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(695, 0, 51, 31));
-        comboBox->setEditable(true);
+        sortTag = new QComboBox(frame);
+        sortTag->setObjectName(QStringLiteral("sortTag"));
+        sortTag->setGeometry(QRect(695, 0, 51, 31));
+        sortTag->setEditable(true);
         frame_3 = new QFrame(frame);
         frame_3->setObjectName(QStringLiteral("frame_3"));
         frame_3->setGeometry(QRect(460, 0, 235, 31));
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
-        lineEdit_3 = new QLineEdit(frame_3);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(20, 5, 213, 21));
-        lineEdit_3->setStyleSheet(QStringLiteral("border:0;"));
-        lineEdit_3->setCursorPosition(0);
-        lineEdit_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        searchTag = new QLineEdit(frame_3);
+        searchTag->setObjectName(QStringLiteral("searchTag"));
+        searchTag->setGeometry(QRect(20, 5, 213, 21));
+        searchTag->setStyleSheet(QStringLiteral("border:0;"));
+        searchTag->setCursorPosition(0);
+        searchTag->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         label_2 = new QLabel(frame_3);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(1, 5, 21, 21));
@@ -192,29 +187,29 @@ public:
         scrollArea->setWidget(scrollAreaWidgetContents);
         frame_4 = new QFrame(tag);
         frame_4->setObjectName(QStringLiteral("frame_4"));
-        frame_4->setGeometry(QRect(774, 10, 251, 25));
+        frame_4->setGeometry(QRect(774, 10, 250, 25));
         frame_4->setFrameShape(QFrame::StyledPanel);
         frame_4->setFrameShadow(QFrame::Raised);
-        lineEdit_4 = new QLineEdit(frame_4);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(20, 5, 213, 16));
-        lineEdit_4->setStyleSheet(QStringLiteral("border:0;"));
-        lineEdit_4->setCursorPosition(0);
-        lineEdit_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        searchFile = new QLineEdit(frame_4);
+        searchFile->setObjectName(QStringLiteral("searchFile"));
+        searchFile->setGeometry(QRect(20, 5, 213, 16));
+        searchFile->setStyleSheet(QStringLiteral("border:0;"));
+        searchFile->setCursorPosition(0);
+        searchFile->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         label_4 = new QLabel(frame_4);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(1, 4, 21, 19));
         label_4->setPixmap(QPixmap(QString::fromUtf8("search.png")));
         label_4->setScaledContents(true);
-        widget1 = new QWidget(tag);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 10, 64, 26));
-        horizontalLayout = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(tag);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 10, 64, 26));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        back = new QPushButton(widget1);
+        back = new QPushButton(layoutWidget1);
         back->setObjectName(QStringLiteral("back"));
         QIcon icon;
         icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -222,7 +217,7 @@ public:
 
         horizontalLayout->addWidget(back);
 
-        next = new QPushButton(widget1);
+        next = new QPushButton(layoutWidget1);
         next->setObjectName(QStringLiteral("next"));
         QIcon icon1;
         icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -231,17 +226,13 @@ public:
         horizontalLayout->addWidget(next);
 
         tabWidget->addTab(tag, QString());
+        layoutWidget->raise();
         treeView->raise();
         listView->raise();
         lineEdit->raise();
         frame_2->raise();
-        next->raise();
-        back->raise();
         scrollArea->raise();
-        label_2->raise();
         frame_4->raise();
-        lineEdit_4->raise();
-        lineEdit_4->raise();
         tabFilter = new QWidget();
         tabFilter->setObjectName(QStringLiteral("tabFilter"));
         tabFilter->setStyleSheet(QStringLiteral(""));
@@ -277,10 +268,15 @@ public:
         EditTag->setText(QApplication::translate("MainWindow", "Edit tag", Q_NULLPTR));
         removeTag->setText(QApplication::translate("MainWindow", "Remove tag", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "<html><head/><body><p>List of  tags</p></body></html>", Q_NULLPTR));
-        comboBox->setCurrentText(QApplication::translate("MainWindow", "A-Z", Q_NULLPTR));
-        lineEdit_3->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
+        sortTag->clear();
+        sortTag->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "A-Z", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Z-A", Q_NULLPTR)
+        );
+        sortTag->setCurrentText(QApplication::translate("MainWindow", "A-Z", Q_NULLPTR));
+        searchTag->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
         label_2->setText(QString());
-        lineEdit_4->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
+        searchFile->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
         label_4->setText(QString());
         back->setText(QString());
         next->setText(QString());
