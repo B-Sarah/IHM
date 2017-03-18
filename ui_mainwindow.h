@@ -13,9 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
@@ -48,6 +50,9 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QFrame *frame;
+    QLabel *label;
+    QComboBox *comboBox;
+    QLineEdit *lineEdit_3;
     QWidget *widget1;
     QHBoxLayout *horizontalLayout;
     QPushButton *back;
@@ -160,6 +165,16 @@ public:
         frame->setGeometry(QRect(0, 0, 746, 31));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
+        label = new QLabel(frame);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 6, 81, 21));
+        comboBox = new QComboBox(frame);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(705, 0, 41, 31));
+        comboBox->setEditable(true);
+        lineEdit_3 = new QLineEdit(frame);
+        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        lineEdit_3->setGeometry(QRect(515, 0, 191, 31));
         scrollArea->setWidget(scrollAreaWidgetContents);
         widget1 = new QWidget(tag);
         widget1->setObjectName(QStringLiteral("widget1"));
@@ -220,6 +235,8 @@ public:
         newTag->setText(QApplication::translate("MainWindow", "New tag", Q_NULLPTR));
         EditTag->setText(QApplication::translate("MainWindow", "Edit tag", Q_NULLPTR));
         removeTag->setText(QApplication::translate("MainWindow", "Remove tag(s)", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p>List of  tags</p></body></html>", Q_NULLPTR));
+        comboBox->setCurrentText(QApplication::translate("MainWindow", "A", Q_NULLPTR));
         back->setText(QString());
         next->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tag), QApplication::translate("MainWindow", "File tagging ", Q_NULLPTR));
