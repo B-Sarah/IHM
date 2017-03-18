@@ -51,11 +51,13 @@ OBJECTS_DIR   = ./
 SOURCES       = main.cpp \
 		mainwindow.cpp \
 		tagger.cpp \
-		tag.cpp moc_mainwindow.cpp
+		tag.cpp \
+		visitstack.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		tagger.o \
 		tag.o \
+		visitstack.o \
 		moc_mainwindow.o
 DIST          = ../../Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.8/gcc_64/mkspecs/common/unix.conf \
@@ -207,6 +209,7 @@ DIST          = ../../Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -228,10 +231,12 @@ DIST          = ../../Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.8/gcc_64/mkspecs/features/lex.prf \
 		FileTagger.pro mainwindow.h \
 		tagger.h \
-		tag.h main.cpp \
+		tag.h \
+		visitstack.h main.cpp \
 		mainwindow.cpp \
 		tagger.cpp \
-		tag.cpp
+		tag.cpp \
+		visitstack.cpp
 QMAKE_TARGET  = FileTagger
 DESTDIR       = 
 TARGET        = FileTagger
@@ -393,6 +398,7 @@ Makefile: FileTagger.pro ../../Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf ../../
 		../../Qt/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -567,6 +573,7 @@ Makefile: FileTagger.pro ../../Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf ../../
 ../../Qt/5.8/gcc_64/mkspecs/features/qt_config.prf:
 ../../Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../Qt/5.8/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.8/gcc_64/mkspecs/features/toolchain.prf:
 ../../Qt/5.8/gcc_64/mkspecs/features/default_pre.prf:
@@ -605,8 +612,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt/5.8/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h tagger.h tag.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp tagger.cpp tag.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h tagger.h tag.h visitstack.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp tagger.cpp tag.cpp visitstack.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -1024,18 +1031,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.8/gcc_64/include/QtGui/qinputmethod.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/QButtonGroup \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/QFrame \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qlayout.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/QHeaderView \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qheaderview.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../Qt/5.8/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/5.8/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/QComboBox \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qcombobox.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qstyleoption.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qabstractspinbox.h \
@@ -1046,6 +1043,20 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qstyle.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qtabbar.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/QFrame \
+		../../Qt/5.8/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qlayout.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/QHeaderView \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qheaderview.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/QLabel \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qlabel.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/QLineEdit \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qlineedit.h \
 		../../Qt/5.8/gcc_64/include/QtGui/qtextcursor.h \
@@ -1057,11 +1068,14 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/QPushButton \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/QScrollArea \
+		../../Qt/5.8/gcc_64/include/QtWidgets/qscrollarea.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/QStatusBar \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../Qt/5.8/gcc_64/include/QtWidgets/QTabWidget \
 		../../Qt/5.8/gcc_64/include/QtWidgets/QTreeView \
 		../../Qt/5.8/gcc_64/include/QtWidgets/qtreeview.h \
+		../../Qt/5.8/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../Qt/5.8/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
@@ -1183,6 +1197,51 @@ tag.o: tag.cpp tag.h \
 		../../Qt/5.8/gcc_64/include/QtCore/qarraydata.h \
 		../../Qt/5.8/gcc_64/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tag.o tag.cpp
+
+visitstack.o: visitstack.cpp visitstack.h \
+		../../Qt/5.8/gcc_64/include/QtCore/QStack \
+		../../Qt/5.8/gcc_64/include/QtCore/qstack.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qvector.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qglobal.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qconfig.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qlogging.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qflags.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qatomic.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qmutex.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qiterator.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qlist.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qchar.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qpair.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qstring.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qregexp.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../../Qt/5.8/gcc_64/include/QtCore/qpoint.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o visitstack.o visitstack.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
