@@ -172,7 +172,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -223,11 +223,6 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
         </item>
        </layout>
       </widget>
-      <zorder>EditTag</zorder>
-      <zorder>removeTag</zorder>
-      <zorder>newTag</zorder>
-      <zorder>newTag</zorder>
-      <zorder>EditTag</zorder>
      </widget>
      <widget class="QScrollArea" name="scrollArea">
       <property name="geometry">
@@ -425,7 +420,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -459,17 +454,13 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
        </item>
       </layout>
      </widget>
+     <zorder>layoutWidget</zorder>
      <zorder>treeView</zorder>
      <zorder>listView</zorder>
      <zorder>lineEdit</zorder>
      <zorder>frame_2</zorder>
-     <zorder>next</zorder>
-     <zorder>back</zorder>
      <zorder>scrollArea</zorder>
-     <zorder>label_2</zorder>
      <zorder>frame_4</zorder>
-     <zorder>searchFile</zorder>
-     <zorder>searchFile</zorder>
     </widget>
     <widget class="QWidget" name="tabFilter">
      <property name="styleSheet">

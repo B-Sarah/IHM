@@ -41,7 +41,7 @@ public:
     QListView *listView;
     QLineEdit *lineEdit;
     QFrame *frame_2;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *newTag;
     QPushButton *EditTag;
@@ -57,7 +57,7 @@ public:
     QFrame *frame_4;
     QLineEdit *searchFile;
     QLabel *label_4;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QPushButton *back;
     QPushButton *next;
@@ -121,37 +121,32 @@ public:
 ""));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
-        widget = new QWidget(frame_2);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 241, 154));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(frame_2);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 241, 154));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        newTag = new QPushButton(widget);
+        newTag = new QPushButton(layoutWidget);
         newTag->setObjectName(QStringLiteral("newTag"));
         newTag->setMinimumSize(QSize(0, 45));
 
         verticalLayout->addWidget(newTag);
 
-        EditTag = new QPushButton(widget);
+        EditTag = new QPushButton(layoutWidget);
         EditTag->setObjectName(QStringLiteral("EditTag"));
         EditTag->setMinimumSize(QSize(0, 45));
 
         verticalLayout->addWidget(EditTag);
 
-        removeTag = new QPushButton(widget);
+        removeTag = new QPushButton(layoutWidget);
         removeTag->setObjectName(QStringLiteral("removeTag"));
         removeTag->setMinimumSize(QSize(0, 50));
 
         verticalLayout->addWidget(removeTag);
 
-        EditTag->raise();
-        removeTag->raise();
-        newTag->raise();
-        newTag->raise();
-        EditTag->raise();
         scrollArea = new QScrollArea(tag);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setGeometry(QRect(280, 430, 746, 241));
@@ -206,15 +201,15 @@ public:
         label_4->setGeometry(QRect(1, 4, 21, 19));
         label_4->setPixmap(QPixmap(QString::fromUtf8("search.png")));
         label_4->setScaledContents(true);
-        widget1 = new QWidget(tag);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 10, 64, 26));
-        horizontalLayout = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(tag);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 10, 64, 26));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        back = new QPushButton(widget1);
+        back = new QPushButton(layoutWidget1);
         back->setObjectName(QStringLiteral("back"));
         QIcon icon;
         icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -222,7 +217,7 @@ public:
 
         horizontalLayout->addWidget(back);
 
-        next = new QPushButton(widget1);
+        next = new QPushButton(layoutWidget1);
         next->setObjectName(QStringLiteral("next"));
         QIcon icon1;
         icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -231,17 +226,13 @@ public:
         horizontalLayout->addWidget(next);
 
         tabWidget->addTab(tag, QString());
+        layoutWidget->raise();
         treeView->raise();
         listView->raise();
         lineEdit->raise();
         frame_2->raise();
-        next->raise();
-        back->raise();
         scrollArea->raise();
-        label_2->raise();
         frame_4->raise();
-        searchFile->raise();
-        searchFile->raise();
         tabFilter = new QWidget();
         tabFilter->setObjectName(QStringLiteral("tabFilter"));
         tabFilter->setStyleSheet(QStringLiteral(""));
