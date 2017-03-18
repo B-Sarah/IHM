@@ -377,7 +377,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>back.png</normaloff>back.png</iconset>
+              <normaloff>undo.png</normaloff>undo.png</iconset>
             </property>
            </widget>
           </item>
@@ -388,7 +388,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>next.png</normaloff>next.png</iconset>
+              <normaloff>redo.png</normaloff>redo.png</iconset>
             </property>
            </widget>
           </item>
