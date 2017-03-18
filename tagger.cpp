@@ -2,10 +2,12 @@
 
 Tagger::Tagger()
 {
-
+    loadStateFromFile(tagFilePath, mapFilePath);
 }
 
 Tagger::~Tagger(){
+    saveStateToFile(tagFilePath, mapFilePath);
+
     foreach(Tag* tag, tags){
         delete tag;
         tag = NULL;
@@ -139,8 +141,14 @@ QList<QString> Tagger::getTagsOfFile(QString fileName){
             tagList.removeAt(i);
         }
     }
-    //update the file tags
-    filesTags.insert(fileName, tagList);
+    if(tagList.isEmpty()){
+        //if no tag left, remove list
+        filesTags.remove(fileName);
+    }
+    else{
+        //update the file tags
+        filesTags.insert(fileName, tagList);
+    }
 
     //create the list of tag names
     foreach(Tag** tag, tagList){
@@ -169,6 +177,26 @@ QList<QString> Tagger::searchFilesFromTag(QString tagName){
 
     return files;
 }
+
+
+bool Tagger::saveStateToFile(QString tagFileName, QString tagMapFileName){
+    bool success = true;
+    success = saveTagToFile(tagFileName);
+    if(success)
+        success = saveMapToFile(tagMapFileName);
+
+    return success;
+}
+
+bool Tagger::loadStateFromFile(QString tagFileName, QString tagMapFileName){
+    bool success = true;
+    success = loadTagFromFile(tagFileName);
+    if(success)
+        success = loadMapFromFile(tagMapFileName);
+
+    return success;
+}
+
 
 /* utility */
 
@@ -201,4 +229,88 @@ bool Tagger::tagPresentInList(Tag* tag){
             return true;
     }
     return false;
+}
+
+bool Tagger::saveTagToFile(QString tagFileName){
+    QFile file (tagFileName);
+
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    QTextStream writer(&file);
+    writer.setCodec("UTF-8");
+
+    foreach(Tag* t, tags){
+        writer << t->getName() << endl;
+    }
+
+    file.close();
+    return true;
+}
+
+bool Tagger::saveMapToFile(QString tagMapFileName){
+    QFile file (tagMapFileName);
+
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    QTextStream writer(&file);
+    writer.setCodec("UTF-8");
+
+    foreach(QString filePath, filesTags.keys()){
+        //filename first followed by : then tags of file
+        writer << filePath << ":";
+        QList<QString> tagOfFile = getTagsOfFile(filePath);
+        foreach(QString tagName, tagOfFile){
+            writer << tagName << ",";
+        }
+        writer << endl;
+    }
+
+    file.close();
+    return true;
+}
+
+bool Tagger::loadTagFromFile(QString tagFileName){
+    QFile file (tagFileName);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    QTextStream flux(&file);
+
+    QString tagLine;
+
+    while(!flux.atEnd()){
+        tagLine = flux.readLine();
+        addNewTag(tagLine);
+    }
+    file.close();
+    return true;
+}
+
+bool Tagger::loadMapFromFile(QString tagMapFileName){
+    QFile file (tagMapFileName);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    QTextStream flux(&file);
+
+    QString mapLine;
+
+    while(!flux.atEnd()){
+        mapLine = flux.readLine();
+        //we split the line with : and ,
+        QStringList lineSplit = mapLine.split(":");
+        //1st word is key (file name)
+        QString fileName = lineSplit.at(0);
+        lineSplit = lineSplit.at(1).split(",");
+
+        //fill all remaining word as tag of file
+        for(int i = 0; i < lineSplit.length(); i++){
+            tagFile(fileName, lineSplit.at(i));
+        }
+
+    }
+    file.close();
+    return true;
 }

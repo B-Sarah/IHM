@@ -25,13 +25,24 @@ public:
     QList<QString> getTagsOfFile(QString fileName);
     QList<QString> searchFilesFromTag(QString tagName);
 
+    bool saveStateToFile(QString tagFileName, QString tagMapFileName);
+    bool loadStateFromFile(QString tagFileName, QString tagMapFileName);
 private:
     QList<Tag*> tags;
     QMap<QString,  QList<Tag**>> filesTags;
 
+    const QString tagFilePath = ".tagList";
+    const QString mapFilePath = ".fileTagsMapping";
+
     Tag* getTagFromName(QString tagName);
     bool fileAlreadyAdded(QString fileName);
     bool tagPresentInList(Tag* tag);
+
+    bool saveTagToFile(QString tagFileName);
+    bool saveMapToFile(QString tagMapFileName);
+
+    bool loadTagFromFile(QString tagFileName);
+    bool loadMapFromFile(QString tagMapFileName);
 };
 
 #endif // TAGGER_H
