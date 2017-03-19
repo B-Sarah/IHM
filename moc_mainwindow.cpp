@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[6];
-    char stringdata0[69];
+    QByteArrayData data[11];
+    char stringdata0[149];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,15 +32,22 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 19), // "slotSelectionChange"
-QT_MOC_LITERAL(2, 31, 0), // ""
-QT_MOC_LITERAL(3, 32, 14), // "QItemSelection"
-QT_MOC_LITERAL(4, 47, 15), // "slotDoubleClick"
-QT_MOC_LITERAL(5, 63, 5) // "index"
+QT_MOC_LITERAL(1, 11, 15), // "slotDirSelected"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 14), // "QItemSelection"
+QT_MOC_LITERAL(4, 43, 21), // "slotFileDoubleClicked"
+QT_MOC_LITERAL(5, 65, 15), // "slotBackClicked"
+QT_MOC_LITERAL(6, 81, 15), // "slotNextClicked"
+QT_MOC_LITERAL(7, 97, 14), // "slotURLChanged"
+QT_MOC_LITERAL(8, 112, 10), // "slotAddTag"
+QT_MOC_LITERAL(9, 123, 11), // "slotEditTag"
+QT_MOC_LITERAL(10, 135, 13) // "slotRemoveTag"
 
     },
-    "MainWindow\0slotSelectionChange\0\0"
-    "QItemSelection\0slotDoubleClick\0index"
+    "MainWindow\0slotDirSelected\0\0QItemSelection\0"
+    "slotFileDoubleClicked\0slotBackClicked\0"
+    "slotNextClicked\0slotURLChanged\0"
+    "slotAddTag\0slotEditTag\0slotRemoveTag"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +57,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,12 +65,24 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   24,    2, 0x0a /* Public */,
-       4,    1,   29,    2, 0x0a /* Public */,
+       1,    2,   54,    2, 0x0a /* Public */,
+       4,    1,   59,    2, 0x0a /* Public */,
+       5,    0,   62,    2, 0x0a /* Public */,
+       6,    0,   63,    2, 0x0a /* Public */,
+       7,    0,   64,    2, 0x0a /* Public */,
+       8,    0,   65,    2, 0x0a /* Public */,
+       9,    0,   66,    2, 0x0a /* Public */,
+      10,    0,   67,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    2,    2,
-    QMetaType::Void, QMetaType::QModelIndex,    5,
+    QMetaType::Void, QMetaType::QModelIndex,    2,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -74,8 +93,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->slotSelectionChange((*reinterpret_cast< const QItemSelection(*)>(_a[1])),(*reinterpret_cast< const QItemSelection(*)>(_a[2]))); break;
-        case 1: _t->slotDoubleClick((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 0: _t->slotDirSelected((*reinterpret_cast< const QItemSelection(*)>(_a[1])),(*reinterpret_cast< const QItemSelection(*)>(_a[2]))); break;
+        case 1: _t->slotFileDoubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 2: _t->slotBackClicked(); break;
+        case 3: _t->slotNextClicked(); break;
+        case 4: _t->slotURLChanged(); break;
+        case 5: _t->slotAddTag(); break;
+        case 6: _t->slotEditTag(); break;
+        case 7: _t->slotRemoveTag(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -118,13 +143,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 8;
     }
     return _id;
 }

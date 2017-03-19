@@ -55,6 +55,7 @@ private:
     bool isValidPath(QString path);
 
     QStringList searchFile(QString fileName);
+    void generateCheckTags();
 };
 
 #endif // MAINWINDOW_H

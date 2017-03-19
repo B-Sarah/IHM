@@ -17,25 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initFsModel();
     initBackNext();
     initURL();
-
-
-    QGridLayout* grid= new QGridLayout();
-    for(int i=0; i<140;i++){
-        for(int j=0; j<6;j++){
-            QCheckBox* checkbox = new QCheckBox();
-            checkbox->setMaximumWidth(200);
-            //checkbox->setMinimumHeight(20);
-            checkbox->setMaximumHeight(20);
-            checkbox->setObjectName("checkbox2");
-            checkbox->setText("tag ");
-            grid->addWidget(checkbox,i,j);
-        }
-    }
-   grid->setAlignment(Qt::AlignTop);
-   QWidget* widget = new QWidget();
-   widget->setLayout(grid);
-   ui->scrollTag->setWidget(widget);
-
+    generateCheckTags();
 
 }
 
@@ -176,3 +158,35 @@ void MainWindow::slotEditTag(){
 void MainWindow::slotRemoveTag(){
 
 }
+
+void MainWindow::generateCheckTags(){
+   QGridLayout* grid= new QGridLayout();
+   int i, j;
+   i=0;
+   j=0;
+   QList<QString> tagList =  tagger.getTagsList();
+
+    for(int index=0; index < tagList.length();index++){
+         QCheckBox* checkbox = new QCheckBox();
+         checkbox->setMaximumWidth(500);
+         checkbox->setMaximumHeight(20);
+         checkbox->setObjectName(tagList.at(index));
+         checkbox->setText(tagList.at(index));
+         if(j == 6){
+             qDebug()<<"blaaaaaaaaaaaaaaaa"<<i<<"----"<<j;
+            j = 0;
+            i++;
+          }
+         grid->addWidget(checkbox,i,j);
+         j++;
+        }
+
+    grid->setAlignment(Qt::AlignTop);
+    QWidget* widget = new QWidget();
+    widget->setLayout(grid);
+    ui->scrollTag->setWidget(widget);
+
+    }
+
+
+

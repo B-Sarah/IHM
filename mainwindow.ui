@@ -344,10 +344,10 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
         <widget class="QWidget" name="layoutWidget_2">
          <property name="geometry">
           <rect>
-           <x>393</x>
+           <x>403</x>
            <y>5</y>
-           <width>64</width>
-           <height>26</height>
+           <width>51</width>
+           <height>21</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -519,20 +519,40 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QWidget" name="horizontalLayoutWidget">
+      <widget class="QScrollArea" name="scrollFolder">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>731</width>
-         <height>361</height>
+         <x>0</x>
+         <y>0</y>
+         <width>745</width>
+         <height>381</height>
         </rect>
        </property>
-       <layout class="QHBoxLayout" name="folderLayout">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetFixedSize</enum>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents_6">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>729</width>
+          <height>379</height>
+         </rect>
         </property>
-       </layout>
+       </widget>
       </widget>
      </widget>
      <zorder>layoutWidget</zorder>
@@ -868,6 +888,79 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Ubuntu</family>
+         <pointsize>13</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Preferences</string>
+       </property>
+      </widget>
+      <widget class="Line" name="line">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>1011</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_2">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>74</y>
+         <width>231</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Example : /home/Desktop/</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>80</y>
+         <width>81</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Ubuntu</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Root path :</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
