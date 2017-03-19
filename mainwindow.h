@@ -5,6 +5,8 @@
 #include <qfilesystemmodel.h>
 #include <QItemSelection>
 #include <QDebug>
+#include <visitstack.h>
+#include <tagger.h>
 
 namespace Ui {
 class MainWindow;
@@ -17,13 +19,23 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void initFsModel();
-    void initTabBar();
 public slots:
-    void slotSelectionChange(const QItemSelection &, const QItemSelection &);
-    void slotDoubleClick(const QModelIndex & index);
+    void slotDirSelected(const QItemSelection &, const QItemSelection &);
+    void slotFileDoubleClicked(const QModelIndex &);
+
+    void slotBackClicked();
+    void slotNextClicked();
+
+    void slotURLChanged();
+
+    void slotAddTag();
+    void slotEditTag();
+    void slotRemoveTag();
 private:
-    const QString rootPath = "/home/salex";
+    const QString rootPath = "/home/alexis";
+
+    VisitStack visitedStack;
+    Tagger tagger;
 
     Ui::MainWindow *ui;
     QFileSystemModel* dirModel;
@@ -31,7 +43,18 @@ private:
 
     void setFilesPath(QString path);
 
-    void expandTo(QString path);
+    void openPath(QString path);
+
+    void initBackNext();
+    void initURL();
+    void initFsModel();
+    void initTabBar();
+
+    void handleBackNextStatus();
+
+    bool isValidPath(QString path);
+
+    QStringList searchFile(QString fileName);
 };
 
 #endif // MAINWINDOW_H
