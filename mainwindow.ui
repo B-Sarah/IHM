@@ -74,7 +74,7 @@
      <string notr="true">QTabBar::tab{height:40px; width:347px}
 QTabBar::tab:selected{background-color:white;}
 QTabBar::tab:last { height:40px; width:60px;}
-QTabBar::tab:disabled { border:none;width:286px}
+QTabBar::tab:disabled { border:none;width:286px;}
 var _tab = mywindow.findChild(&quot;_tab&quot;);
 
 </string>
@@ -95,7 +95,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      </size>
     </property>
     <property name="elideMode">
-     <enum>Qt::ElideNone</enum>
+     <enum>Qt::ElideMiddle</enum>
     </property>
     <widget class="QWidget" name="tag">
      <property name="styleSheet">
@@ -213,7 +213,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>50</height>
+            <height>45</height>
            </size>
           </property>
           <property name="text">
@@ -227,7 +227,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <widget class="QScrollArea" name="scrollArea">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>278</x>
         <y>430</y>
         <width>746</width>
         <height>241</height>
@@ -237,23 +237,26 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
        <string notr="true">background-color:white;
 </string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
+      <widget class="QWidget" name="widget">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>744</width>
-         <height>239</height>
+         <width>742</width>
+         <height>237</height>
         </rect>
        </property>
        <widget class="QFrame" name="frame">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>0</y>
+          <x>-2</x>
+          <y>-2</y>
           <width>746</width>
           <height>31</height>
          </rect>
@@ -306,7 +309,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
         <widget class="QFrame" name="frame_3">
          <property name="geometry">
           <rect>
-           <x>460</x>
+           <x>461</x>
            <y>0</y>
            <width>235</width>
            <height>31</height>
@@ -359,6 +362,66 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
            <bool>true</bool>
           </property>
          </widget>
+        </widget>
+        <widget class="QWidget" name="layoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>5</y>
+           <width>64</width>
+           <height>26</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="back_2">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>undo.png</normaloff>undo.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="next_2">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>redo.png</normaloff>redo.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QScrollArea" name="scrollTag">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>39</y>
+          <width>731</width>
+          <height>191</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>731</width>
+           <height>191</height>
+          </rect>
+         </property>
         </widget>
        </widget>
       </widget>

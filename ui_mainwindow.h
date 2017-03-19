@@ -47,13 +47,19 @@ public:
     QPushButton *EditTag;
     QPushButton *removeTag;
     QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
+    QWidget *widget;
     QFrame *frame;
     QLabel *label;
     QComboBox *sortTag;
     QFrame *frame_3;
     QLineEdit *searchTag;
     QLabel *label_2;
+    QWidget *layoutWidget_2;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *back_2;
+    QPushButton *next_2;
+    QScrollArea *scrollTag;
+    QWidget *scrollAreaWidgetContents;
     QFrame *frame_4;
     QLineEdit *searchFile;
     QLabel *label_4;
@@ -90,14 +96,14 @@ public:
         tabWidget->setStyleSheet(QLatin1String("QTabBar::tab{height:40px; width:347px}\n"
 "QTabBar::tab:selected{background-color:white;}\n"
 "QTabBar::tab:last { height:40px; width:60px;}\n"
-"QTabBar::tab:disabled { border:none;width:286px}\n"
+"QTabBar::tab:disabled { border:none;width:286px;}\n"
 "var _tab = mywindow.findChild(\"_tab\");\n"
 "\n"
 ""));
         tabWidget->setTabPosition(QTabWidget::North);
         tabWidget->setTabShape(QTabWidget::Rounded);
         tabWidget->setIconSize(QSize(45, 35));
-        tabWidget->setElideMode(Qt::ElideNone);
+        tabWidget->setElideMode(Qt::ElideMiddle);
         tag = new QWidget();
         tag->setObjectName(QStringLiteral("tag"));
         tag->setStyleSheet(QLatin1String("background-color:white;\n"
@@ -143,22 +149,23 @@ public:
 
         removeTag = new QPushButton(layoutWidget);
         removeTag->setObjectName(QStringLiteral("removeTag"));
-        removeTag->setMinimumSize(QSize(0, 50));
+        removeTag->setMinimumSize(QSize(0, 45));
 
         verticalLayout->addWidget(removeTag);
 
         scrollArea = new QScrollArea(tag);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(280, 430, 746, 241));
+        scrollArea->setGeometry(QRect(278, 430, 746, 241));
         scrollArea->setStyleSheet(QLatin1String("background-color:white;\n"
 ""));
+        scrollArea->setFrameShape(QFrame::Box);
         scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 744, 239));
-        frame = new QFrame(scrollAreaWidgetContents);
+        widget = new QWidget();
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(0, 0, 742, 237));
+        frame = new QFrame(widget);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(0, 0, 746, 31));
+        frame->setGeometry(QRect(-2, -2, 746, 31));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         label = new QLabel(frame);
@@ -170,7 +177,7 @@ public:
         sortTag->setEditable(true);
         frame_3 = new QFrame(frame);
         frame_3->setObjectName(QStringLiteral("frame_3"));
-        frame_3->setGeometry(QRect(460, 0, 235, 31));
+        frame_3->setGeometry(QRect(461, 0, 235, 31));
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
         searchTag = new QLineEdit(frame_3);
@@ -184,7 +191,40 @@ public:
         label_2->setGeometry(QRect(1, 5, 21, 21));
         label_2->setPixmap(QPixmap(QString::fromUtf8("search.png")));
         label_2->setScaledContents(true);
-        scrollArea->setWidget(scrollAreaWidgetContents);
+        layoutWidget_2 = new QWidget(frame);
+        layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
+        layoutWidget_2->setGeometry(QRect(390, 5, 64, 26));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget_2);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        back_2 = new QPushButton(layoutWidget_2);
+        back_2->setObjectName(QStringLiteral("back_2"));
+        QIcon icon;
+        icon.addFile(QStringLiteral("undo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        back_2->setIcon(icon);
+
+        horizontalLayout_2->addWidget(back_2);
+
+        next_2 = new QPushButton(layoutWidget_2);
+        next_2->setObjectName(QStringLiteral("next_2"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral("redo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        next_2->setIcon(icon1);
+
+        horizontalLayout_2->addWidget(next_2);
+
+        scrollTag = new QScrollArea(widget);
+        scrollTag->setObjectName(QStringLiteral("scrollTag"));
+        scrollTag->setGeometry(QRect(9, 39, 731, 191));
+        scrollTag->setFrameShape(QFrame::NoFrame);
+        scrollTag->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 731, 191));
+        scrollTag->setWidget(scrollAreaWidgetContents);
+        scrollArea->setWidget(widget);
         frame_4 = new QFrame(tag);
         frame_4->setObjectName(QStringLiteral("frame_4"));
         frame_4->setGeometry(QRect(774, 10, 250, 25));
@@ -211,17 +251,17 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         back = new QPushButton(layoutWidget1);
         back->setObjectName(QStringLiteral("back"));
-        QIcon icon;
-        icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
-        back->setIcon(icon);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
+        back->setIcon(icon2);
 
         horizontalLayout->addWidget(back);
 
         next = new QPushButton(layoutWidget1);
         next->setObjectName(QStringLiteral("next"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
-        next->setIcon(icon1);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
+        next->setIcon(icon3);
 
         horizontalLayout->addWidget(next);
 
@@ -245,9 +285,9 @@ public:
         para->setContextMenuPolicy(Qt::CustomContextMenu);
         para->setLayoutDirection(Qt::LeftToRight);
         para->setStyleSheet(QStringLiteral(""));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral("preferences.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(para, icon2, QString());
+        QIcon icon4;
+        icon4.addFile(QStringLiteral("preferences.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(para, icon4, QString());
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -276,6 +316,8 @@ public:
         sortTag->setCurrentText(QApplication::translate("MainWindow", "A-Z", Q_NULLPTR));
         searchTag->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
         label_2->setText(QString());
+        back_2->setText(QString());
+        next_2->setText(QString());
         searchFile->setPlaceholderText(QApplication::translate("MainWindow", "Search", Q_NULLPTR));
         label_4->setText(QString());
         back->setText(QString());
