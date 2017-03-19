@@ -409,6 +409,13 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
            <height>209</height>
           </rect>
          </property>
+         <zorder>checkBox</zorder>
+         <zorder>checkBox_3</zorder>
+         <zorder>label_18</zorder>
+         <zorder>textEdit_2</zorder>
+         <zorder>label_18</zorder>
+         <zorder>checkBox_3</zorder>
+         <zorder>lineEdit_4</zorder>
         </widget>
        </widget>
       </widget>
@@ -552,6 +559,9 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           <height>379</height>
          </rect>
         </property>
+        <zorder>checkBox_2</zorder>
+        <zorder>lineEdit_4</zorder>
+        <zorder>lineEdit_3</zorder>
        </widget>
       </widget>
      </widget>
@@ -562,6 +572,10 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <zorder>scrollArea</zorder>
      <zorder>frame_4</zorder>
      <zorder>frame_14</zorder>
+     <zorder>pushButton_2</zorder>
+     <zorder>lineEdit_4</zorder>
+     <zorder>checkBox_2</zorder>
+     <zorder>lineEdit_3</zorder>
     </widget>
     <widget class="QWidget" name="tabFilter">
      <property name="styleSheet">

@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <visitstack.h>
 #include <tagger.h>
+#include <tagdesign.h>
+#include <QGridLayout>
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +33,11 @@ public slots:
     void slotAddTag();
     void slotEditTag();
     void slotRemoveTag();
+    Tagger* getTagger();
+private slots:
+    void on_newTag_clicked();
+
+
 private:
     const QString rootPath = "/home/alexis";
 
@@ -40,6 +47,9 @@ private:
     Ui::MainWindow *ui;
     QFileSystemModel* dirModel;
     QFileSystemModel* filesModel;
+    QGridLayout* grid;
+    int rowTag;
+    int columnTag;
 
     void setFilesPath(QString path);
 
@@ -56,6 +66,7 @@ private:
 
     QStringList searchFile(QString fileName);
     void generateCheckTags();
+    void clearGrid(QGridLayout* grid);
 };
 
 #endif // MAINWINDOW_H

@@ -27,11 +27,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     tagger.cpp \
     tag.cpp \
-    visitstack.cpp
+    visitstack.cpp \
+    tagdesign.cpp
 
 HEADERS  += mainwindow.h \
     tagger.h \
     tag.h \
-    visitstack.h
+    visitstack.h \
+    tagdesign.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    tagdesign.ui

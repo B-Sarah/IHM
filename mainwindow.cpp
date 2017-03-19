@@ -13,6 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     dirModel = new QFileSystemModel(this);
     filesModel = new QFileSystemModel(this);
 
+    rowTag=0;
+    columnTag=0;
+
+    grid = new QGridLayout();
+
     initTabBar();
     initFsModel();
     initBackNext();
@@ -160,25 +165,21 @@ void MainWindow::slotRemoveTag(){
 }
 
 void MainWindow::generateCheckTags(){
-   QGridLayout* grid= new QGridLayout();
-   int i, j;
-   i=0;
-   j=0;
+
+
    QList<QString> tagList =  tagger.getTagsList();
 
     for(int index=0; index < tagList.length();index++){
-         QCheckBox* checkbox = new QCheckBox();
-         checkbox->setMaximumWidth(500);
-         checkbox->setMaximumHeight(20);
-         checkbox->setObjectName(tagList.at(index));
+         TagDesign* checkbox = new TagDesign(&tagger);
          checkbox->setText(tagList.at(index));
-         if(j == 6){
-             qDebug()<<"blaaaaaaaaaaaaaaaa"<<i<<"----"<<j;
-            j = 0;
-            i++;
+         checkbox->setEdit(false);
+         if(columnTag == 5){
+            columnTag = 0;
+            rowTag++;
           }
-         grid->addWidget(checkbox,i,j);
-         j++;
+         grid->addWidget(checkbox,rowTag,columnTag);
+
+         columnTag++;
         }
 
     grid->setAlignment(Qt::AlignTop);
@@ -190,3 +191,38 @@ void MainWindow::generateCheckTags(){
 
 
 
+
+void MainWindow::on_newTag_clicked()
+{
+    clearGrid(grid);
+    TagDesign* tagD = new TagDesign();
+
+    tagD->setText("New tag");
+    grid->addWidget(tagD,0,0);
+    tagD->setEdit(true);
+    tagD->setEditSelected();
+    //tagD->setFocusEdit();
+
+
+    columnTag++;
+
+    generateCheckTags();
+
+
+}
+
+Tagger* MainWindow::getTagger()
+{
+ return &tagger;
+}
+
+void MainWindow::clearGrid(QGridLayout* gridLayout){
+    QLayoutItem* item;
+    while((item = gridLayout->takeAt(0))!= 0){
+       if(item->widget() !=  NULL){
+        delete item->widget();
+           columnTag = 0;
+           rowTag = 0;
+        }
+    }
+}
