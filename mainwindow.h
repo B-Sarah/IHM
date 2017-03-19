@@ -23,7 +23,7 @@ public slots:
     void slotSelectionChange(const QItemSelection &, const QItemSelection &);
     void slotDoubleClick(const QModelIndex & index);
 private:
-    const QString rootPath = "/home/alexis";
+    const QString rootPath = "/home/salex";
 
     Ui::MainWindow *ui;
     QFileSystemModel* dirModel;

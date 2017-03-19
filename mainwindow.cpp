@@ -11,53 +11,25 @@ MainWindow::MainWindow(QWidget *parent) :
     dirModel = new QFileSystemModel(this);
     filesModel = new QFileSystemModel(this);
 
+
+
     QBoxLayout* box= new QBoxLayout(QBoxLayout::LeftToRight);
-
-    QCheckBox* checkbox = new QCheckBox();
-    checkbox->setObjectName("checkbox1");
-    checkbox->setText("tag 2016");
-    box->addWidget(checkbox);
-
-    QCheckBox* checkbox1 = new QCheckBox();
-    checkbox->setObjectName("checkbox2");
-    checkbox1->setText("tag ");
-    box->addWidget(checkbox1);
-
-    QCheckBox* checkbox2 = new QCheckBox();
-    checkbox2->setObjectName("checkbox1");
-    checkbox2->setText("tag 2016");
-    box->addWidget(checkbox2);
-
-    QCheckBox* che = new QCheckBox();
-    che->setObjectName("checkbox2");
-    che->setText("tag ");
-    box->addWidget(che);
-
-
-    QCheckBox* ch = new QCheckBox();
-    ch->setObjectName("checkbox1");
-    ch->setText("tag 2016");
-    box->addWidget(ch);
-
-    QCheckBox* check = new QCheckBox();
-    check->setObjectName("checkbox2");
-    check->setText("tag ");
-    box->addWidget(check);
-
-
-    QCheckBox* checkbo = new QCheckBox();
-    checkbo->setObjectName("checkbox1");
-    checkbo->setText("tag 2016");
-    box->addWidget(checkbo);
-
-    QCheckBox* checkb = new QCheckBox();
-    checkb->setObjectName("checkbox2");
-    checkb->setText("tag ");
-    box->addWidget(checkb);
-
-
-
-ui->scrollTag->setLayout(box);
+    QGridLayout* grid= new QGridLayout();
+    for(int i=0; i<140;i++){
+        for(int j=0; j<6;j++){
+            QCheckBox* checkbox = new QCheckBox();
+            checkbox->setMaximumWidth(200);
+            //checkbox->setMinimumHeight(20);
+            checkbox->setMaximumHeight(20);
+            checkbox->setObjectName("checkbox2");
+            checkbox->setText("tag ");
+            grid->addWidget(checkbox,i,j);
+        }
+    }
+   grid->setAlignment(Qt::AlignTop);
+   QWidget* widget = new QWidget();
+   widget->setLayout(grid);
+   ui->scrollTag->setWidget(widget);
 
 
 }
@@ -85,16 +57,18 @@ void MainWindow::initFsModel(){
                 );
 
     //
+    /*
     ui->treeView->setColumnHidden(1,true);
     ui->treeView->setColumnHidden(2,true);
     ui->treeView->setColumnHidden(3,true);
 
+    */
+
     //open files at root in view
 
-    ui->listView->setModel(filesModel);
-
+    /*ui->listView->setModel(filesModel);
     connect(ui->listView, SIGNAL (doubleClicked (const QModelIndex & )), this,
-      SLOT ( slotDoubleClick(const QModelIndex & )));
+      SLOT ( slotDoubleClick(const QModelIndex & ))); */
 
     //open tree view to root
     expandTo(rootPath);
@@ -130,7 +104,7 @@ void MainWindow::expandTo(QString path){
 
 void MainWindow::setFilesPath(QString path){
     filesModel->setRootPath(path);
-    ui->listView->setRootIndex(filesModel->setRootPath(path));
+    /*ui->listView->setRootIndex(filesModel->setRootPath(path));*/
 }
 
 void MainWindow::slotSelectionChange(const QItemSelection & index, const QItemSelection &)
