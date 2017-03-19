@@ -10,9 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     dirModel = new QFileSystemModel(this);
     filesModel = new QFileSystemModel(this);
-<<<<<<< HEAD
 
- QBoxLayout* box= new QBoxLayout(QBoxLayout::LeftToRight);
+    QBoxLayout* box= new QBoxLayout(QBoxLayout::LeftToRight);
 
     QCheckBox* checkbox = new QCheckBox();
     checkbox->setObjectName("checkbox1");
@@ -60,8 +59,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 ui->scrollTag->setLayout(box);
 
-=======
->>>>>>> 8fca9ab4e902bb2bd793451be82e02ec4cd0d654
 
 }
 
@@ -75,17 +72,13 @@ void MainWindow::initFsModel(){
     dirModel->setRootPath(rootPath);
     dirModel->setReadOnly(false);
     dirModel->setFilter(QDir::NoDotAndDotDot|QDir::Dirs);
-<<<<<<< HEAD
 
     filesModel->setFilter(QDir::NoDotAndDotDot);
     filesModel->setRootPath(rootPath );
 
-=======
-
     filesModel->setFilter(QDir::NoDotAndDotDot);
     filesModel->setRootPath(rootPath );
 
->>>>>>> 8fca9ab4e902bb2bd793451be82e02ec4cd0d654
     ui->treeView->setModel(dirModel);
     ui->treeView->setColumnHidden(1,true);
     ui->treeView->setColumnHidden(2,true);
