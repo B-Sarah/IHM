@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <qfilesystemmodel.h>
+#include <QItemSelection>
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;
@@ -17,14 +19,20 @@ public:
     ~MainWindow();
     void initFsModel();
     void initTabBar();
-
+public slots:
+    void slotSelectionChange(const QItemSelection &, const QItemSelection &);
+    void slotDoubleClick(const QModelIndex & index);
 private:
-    const QString rootPath = "~/";
+    const QString rootPath = "/home/alexis";
 
     Ui::MainWindow *ui;
     QFileSystemModel* dirModel;
     QFileSystemModel* filesModel;
 
+    void setFilesPath(QString path);
+
+    void expandTo(QString path);
 };
 
 #endif // MAINWINDOW_H
+
