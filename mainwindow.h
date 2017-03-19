@@ -19,8 +19,12 @@ public:
     void initTabBar();
 
 private:
+    const QString rootPath = "~/";
+
     Ui::MainWindow *ui;
-    QFileSystemModel* model;
+    QFileSystemModel* dirModel;
+    QFileSystemModel* filesModel;
+
 };
 
 #endif // MAINWINDOW_H

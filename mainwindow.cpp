@@ -8,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    model = new QFileSystemModel(this);
+    dirModel = new QFileSystemModel(this);
+    filesModel = new QFileSystemModel(this);
 
  QBoxLayout* box= new QBoxLayout(QBoxLayout::LeftToRight);
 
@@ -64,22 +65,25 @@ ui->scrollTag->setLayout(box);
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete model;
+    delete dirModel;
 }
 
 void MainWindow::initFsModel(){
-    model->setRootPath("/");
-    model->setReadOnly(false);
-     model->setFilter(QDir::NoDotAndDotDot|QDir::Dirs);
+    dirModel->setRootPath(rootPath);
+    dirModel->setReadOnly(false);
+    dirModel->setFilter(QDir::NoDotAndDotDot|QDir::Dirs);
 
-    ui->treeView->setModel(model);
+    filesModel->setFilter(QDir::NoDotAndDotDot);
+    filesModel->setRootPath(rootPath );
+
+    ui->treeView->setModel(dirModel);
     ui->treeView->setColumnHidden(1,true);
     ui->treeView->setColumnHidden(2,true);
     ui->treeView->setColumnHidden(3,true);
 
+    ui->listView->setModel(filesModel);
 
-
-
+    ui->listView->setRootIndex(filesModel->setRootPath(rootPath));
 }
 
 void MainWindow::initTabBar(){
@@ -89,3 +93,4 @@ void MainWindow::initTabBar(){
 
 
 }
+
