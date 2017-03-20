@@ -28,13 +28,16 @@ SOURCES += main.cpp\
     tagger.cpp \
     tag.cpp \
     visitstack.cpp \
-    tagdesign.cpp
+    tagdesign.cpp \
+    filecomponent.cpp
 
 HEADERS  += mainwindow.h \
     tagger.h \
     tag.h \
     visitstack.h \
-    tagdesign.h
+    tagdesign.h \
+    filecomponent.h
 
 FORMS    += mainwindow.ui \
-    tagdesign.ui
+    tagdesign.ui \
+    filecomponent.ui

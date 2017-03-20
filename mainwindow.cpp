@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     grid = new QGridLayout();
 
     initTabBar();
+    initFileView();
     initFsModel();
     initBackNext();
     initURL();
@@ -31,6 +32,19 @@ MainWindow::~MainWindow()
     delete ui;
     delete dirModel;
     delete filesModel;
+    delete widgetFileView;
+}
+
+void MainWindow::dblSelectFile(QString fileName)
+{
+    openPath(dirModel->rootPath() + "/" + fileName);
+}
+
+void MainWindow::selectFile(QString fileName)
+{
+    if(QDir(fileName).exists()){
+        //TODO display tags
+    }
 }
 
 void MainWindow::initBackNext(){
@@ -45,6 +59,19 @@ void MainWindow::handleBackNextStatus(){
 
 void MainWindow::initURL(){
     connect(ui->lineEdit, SIGNAL(editingFinished()), this, SLOT(slotURLChanged()));
+}
+
+
+void MainWindow::initFileView(){
+    fileView = new QGridLayout();
+    fileView->setAlignment(Qt::AlignTop);
+    fileView->setSpacing(20);
+
+    widgetFileView = new QWidget();
+    widgetFileView->setLayout(fileView);
+    widgetFileView->setMaximumWidth(740);
+
+    ui->scrollFolder->setWidget(widgetFileView);
 }
 
 void MainWindow::initFsModel(){
@@ -87,8 +114,36 @@ bool MainWindow::isValidPath(QString path){
     return QDir(path).exists();
 }
 
+void MainWindow::addFileToView(QString fileName, QIcon fileIcon){
+    filesJ++;
+    if(filesJ == 6){
+        filesJ = 0;
+        filesI++;
+    }
+    FileComponent* comp = new FileComponent(fileName, fileIcon, this);
+
+    fileView->addWidget(comp, filesI, filesJ);
+    comp->show(); //SALOPERIE !!!
+}
+
+void MainWindow::clearFileView()
+{
+    filesI = 0;
+    filesJ = 0;
+
+    QLayoutItem *child;
+    while ((child = fileView->takeAt(0)) != 0) {
+    delete child->widget();
+    delete child;
+    }
+
+}
+
 void MainWindow::openPath(QString path){
-    ui->treeView->collapseAll();
+    QFileInfo info(path);
+    if(!info.isDir()) return;
+
+    //ui->treeView->collapseAll();
     QModelIndex dirIndex = dirModel->setRootPath(path);
     QModelIndex parentDir = dirModel->parent(dirIndex);
 
@@ -113,10 +168,27 @@ void MainWindow::openPath(QString path){
     handleBackNextStatus();
 
     ui->lineEdit->setText(path);
+
+    setFilesPath(path);
 }
 
 void MainWindow::setFilesPath(QString path){
-    openPath(path);
+    clearFileView();
+
+    QStringList paths = QDir(path).entryList(QDir::NoDotAndDotDot|QDir::Dirs|QDir::Files);
+
+    foreach(QString p, paths){
+        QFileInfo info(path + "/" + p);
+        QFileIconProvider ip;
+        QIcon icon;
+        if(info.isFile())
+            icon = ip.icon(QFileIconProvider::File);
+        else
+            icon = ip.icon(QFileIconProvider::Folder);
+
+        addFileToView(p, icon);
+    }
+
 }
 
 
@@ -126,7 +198,8 @@ void MainWindow::slotDirSelected(const QItemSelection &, const QItemSelection &)
 {
     QModelIndex selectionIndex = ui->treeView->selectionModel()->selectedIndexes().at(0);
     QString path = dirModel->fileInfo(selectionIndex).absoluteFilePath();
-    setFilesPath(path);
+    if(path != dirModel->rootPath())
+        openPath(path);
 }
 
 void MainWindow::slotFileDoubleClicked(const QModelIndex & index){
@@ -144,7 +217,7 @@ void MainWindow::slotNextClicked(){
 }
 
 void MainWindow::slotURLChanged(){
-    if(isValidPath(ui->lineEdit->text())){
+    if(ui->lineEdit->text() != "" && ui->lineEdit->text() != dirModel->rootPath() && isValidPath(ui->lineEdit->text())){
         openPath(ui->lineEdit->text());
     }
     else
@@ -162,6 +235,13 @@ void MainWindow::slotEditTag(){
 
 void MainWindow::slotRemoveTag(){
 
+}
+
+void MainWindow::clearFilesSelection()
+{
+    for(int i = 0; i < fileView->count(); i++){
+        ((FileComponent*)fileView->itemAt(i)->widget())->select(false);
+    }
 }
 
 void MainWindow::generateCheckTags(){
