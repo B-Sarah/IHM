@@ -72,7 +72,7 @@ public:
     QWidget *tabFilter;
     QFrame *frame_5;
     QFrame *frame_6;
-    QTreeView *treeView_2;
+    QTreeView *treeViewFilter;
     QFrame *frame_7;
     QFrame *frame_8;
     QLabel *label_6;
@@ -86,14 +86,17 @@ public:
     QPushButton *pushButton;
     QLabel *label_9;
     QListView *listView_2;
+    QScrollArea *scrollFiltering;
+    QWidget *scrollAreaWidgetContents;
     QWidget *tab;
     QWidget *para;
     QFrame *frame_13;
     QLabel *label_10;
     QFrame *line;
-    QLineEdit *lineEdit_2;
+    QLineEdit *rootPath;
     QLabel *label_15;
-    QWidget *widget1;
+    QPushButton *confirm;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_3;
     QStatusBar *statusBar;
 
@@ -136,6 +139,7 @@ public:
         treeView = new QTreeView(tag);
         treeView->setObjectName(QStringLiteral("treeView"));
         treeView->setGeometry(QRect(10, 40, 261, 451));
+        treeView->header()->setVisible(false);
         lineEdit = new QLineEdit(tag);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(80, 10, 688, 25));
@@ -213,7 +217,7 @@ public:
         label_2->setScaledContents(true);
         layoutWidget_2 = new QWidget(frame);
         layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        layoutWidget_2->setGeometry(QRect(403, 5, 51, 21));
+        layoutWidget_2->setGeometry(QRect(403, 5, 64, 26));
         horizontalLayout_2 = new QHBoxLayout(layoutWidget_2);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -331,9 +335,16 @@ public:
         frame_6->setStyleSheet(QStringLiteral("Background-color:white;"));
         frame_6->setFrameShape(QFrame::StyledPanel);
         frame_6->setFrameShadow(QFrame::Raised);
-        treeView_2 = new QTreeView(frame_6);
-        treeView_2->setObjectName(QStringLiteral("treeView_2"));
-        treeView_2->setGeometry(QRect(10, 20, 261, 641));
+        treeViewFilter = new QTreeView(frame_6);
+        treeViewFilter->setObjectName(QStringLiteral("treeViewFilter"));
+        treeViewFilter->setGeometry(QRect(10, 20, 261, 641));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(treeViewFilter->sizePolicy().hasHeightForWidth());
+        treeViewFilter->setSizePolicy(sizePolicy1);
+        treeViewFilter->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        treeViewFilter->header()->setVisible(false);
         frame_7 = new QFrame(frame_6);
         frame_7->setObjectName(QStringLiteral("frame_7"));
         frame_7->setGeometry(QRect(279, 19, 751, 641));
@@ -396,9 +407,20 @@ public:
         listView_2 = new QListView(frame_7);
         listView_2->setObjectName(QStringLiteral("listView_2"));
         listView_2->setGeometry(QRect(10, 170, 721, 461));
-        frame_8->raise();
-        label_9->raise();
-        listView_2->raise();
+        scrollFiltering = new QScrollArea(frame_7);
+        scrollFiltering->setObjectName(QStringLiteral("scrollFiltering"));
+        scrollFiltering->setGeometry(QRect(10, 170, 721, 461));
+        sizePolicy1.setHeightForWidth(scrollFiltering->sizePolicy().hasHeightForWidth());
+        scrollFiltering->setSizePolicy(sizePolicy1);
+        scrollFiltering->setMinimumSize(QSize(721, 461));
+        scrollFiltering->setMaximumSize(QSize(721, 461));
+        scrollFiltering->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        scrollFiltering->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollFiltering->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 705, 459));
+        scrollFiltering->setWidget(scrollAreaWidgetContents);
         tabWidget->addTab(tabFilter, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -429,9 +451,9 @@ public:
         line->setGeometry(QRect(10, 50, 1011, 20));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
-        lineEdit_2 = new QLineEdit(frame_13);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(120, 74, 231, 31));
+        rootPath = new QLineEdit(frame_13);
+        rootPath->setObjectName(QStringLiteral("rootPath"));
+        rootPath->setGeometry(QRect(120, 74, 231, 31));
         label_15 = new QLabel(frame_13);
         label_15->setObjectName(QStringLiteral("label_15"));
         label_15->setGeometry(QRect(30, 80, 81, 17));
@@ -442,13 +464,16 @@ public:
         font2.setWeight(50);
         font2.setKerning(true);
         label_15->setFont(font2);
+        confirm = new QPushButton(frame_13);
+        confirm->setObjectName(QStringLiteral("confirm"));
+        confirm->setGeometry(QRect(390, 74, 86, 29));
         QIcon icon4;
         icon4.addFile(QStringLiteral("preferences.png"), QSize(), QIcon::Normal, QIcon::Off);
         tabWidget->addTab(para, icon4, QString());
-        widget1 = new QWidget(centralWidget);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(0, 0, 2, 2));
-        horizontalLayout_3 = new QHBoxLayout(widget1);
+        layoutWidget2 = new QWidget(centralWidget);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(0, 0, 2, 2));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -460,7 +485,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -499,9 +524,10 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tabFilter), QApplication::translate("MainWindow", "File filtering", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab), QString());
         label_10->setText(QApplication::translate("MainWindow", "Preferences", Q_NULLPTR));
-        lineEdit_2->setText(QString());
-        lineEdit_2->setPlaceholderText(QApplication::translate("MainWindow", "Example : /home/Desktop/", Q_NULLPTR));
+        rootPath->setText(QString());
+        rootPath->setPlaceholderText(QApplication::translate("MainWindow", "Example : /home/Desktop/", Q_NULLPTR));
         label_15->setText(QApplication::translate("MainWindow", "Root path :", Q_NULLPTR));
+        confirm->setText(QApplication::translate("MainWindow", "Confirm", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(para), QString());
     } // retranslateUi
 

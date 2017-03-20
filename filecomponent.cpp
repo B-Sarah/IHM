@@ -1,15 +1,16 @@
 #include "filecomponent.h"
 #include "ui_filecomponent.h"
 
-FileComponent::FileComponent(QWidget *parent) :
+FileComponent::FileComponent(bool selectable, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FileComponent)
 {
     ui->setupUi(this);
+    this->selectable = selectable;
 }
 
-FileComponent::FileComponent(QString fileName, QIcon fileIcon, MainWindow *window, QWidget *parent) :
-    FileComponent(parent)
+FileComponent::FileComponent(QString fileName, QIcon fileIcon, MainWindow *window, bool selectable, QWidget *parent) :
+    FileComponent(selectable, parent)
 {
     this->fileName = fileName;
     QString tmp = "<p style=\"line-height:%1%\">%2<p>";
@@ -18,7 +19,6 @@ FileComponent::FileComponent(QString fileName, QIcon fileIcon, MainWindow *windo
     QPixmap pixmap = fileIcon.pixmap(41, 41);
     ui->icon->setPixmap(pixmap);
     this->main = window;
-
 }
 
 
@@ -37,12 +37,15 @@ void FileComponent::select(bool state)
 
 bool FileComponent::event(QEvent *event)
 {
-    if(event->type() == QEvent::MouseButtonPress){
-        main->clearFilesSelection();
-        select(true);
-        main->selectFile("/home/alexis/qt/project_ihm");
-    }
-    if(event->type() == QEvent::MouseButtonDblClick){
-        main->dblSelectFile(fileName);
+
+    if(selectable){
+        if(event->type() == QEvent::MouseButtonPress){
+            main->clearFilesSelection();
+            select(true);
+            main->selectFile(this->fileName);
+        }
+        if(event->type() == QEvent::MouseButtonDblClick){
+            main->dblSelectFile(fileName);
+        }
     }
 }

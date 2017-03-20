@@ -52,7 +52,7 @@ public:
         name->setWordWrap(true);
         icon = new QLabel(FileComponent);
         icon->setObjectName(QStringLiteral("icon"));
-        icon->setGeometry(QRect(27, 0, 45, 45));
+        icon->setGeometry(QRect(27, 2, 45, 45));
         icon->setMinimumSize(QSize(45, 45));
         icon->setMaximumSize(QSize(45, 45));
         icon->setAlignment(Qt::AlignHCenter|Qt::AlignTop);

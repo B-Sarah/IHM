@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QLineEdit" name="editTag">
    <property name="geometry">
     <rect>
@@ -46,6 +49,9 @@
      <width>20</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -75,8 +81,9 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>editTag</tabstop>
   <tabstop>checkTag</tabstop>
+  <tabstop>tagName</tabstop>
+  <tabstop>editTag</tabstop>
  </tabstops>
  <resources/>
  <connections/>

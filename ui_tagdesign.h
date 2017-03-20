@@ -34,6 +34,7 @@ public:
         TagDesign->resize(119, 31);
         TagDesign->setMinimumSize(QSize(110, 31));
         TagDesign->setMaximumSize(QSize(200, 50));
+        TagDesign->setStyleSheet(QStringLiteral(""));
         editTag = new QLineEdit(TagDesign);
         editTag->setObjectName(QStringLiteral("editTag"));
         editTag->setGeometry(QRect(0, 0, 119, 31));
@@ -41,6 +42,7 @@ public:
         checkTag = new QCheckBox(TagDesign);
         checkTag->setObjectName(QStringLiteral("checkTag"));
         checkTag->setGeometry(QRect(6, 7, 20, 21));
+        checkTag->setStyleSheet(QStringLiteral(""));
         tagName = new QLineEdit(TagDesign);
         tagName->setObjectName(QStringLiteral("tagName"));
         tagName->setGeometry(QRect(25, 4, 91, 25));
@@ -48,7 +50,8 @@ public:
         tagName->setMaxLength(12);
         tagName->setFrame(false);
         tagName->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-        QWidget::setTabOrder(editTag, checkTag);
+        QWidget::setTabOrder(checkTag, tagName);
+        QWidget::setTabOrder(tagName, editTag);
 
         retranslateUi(TagDesign);
 

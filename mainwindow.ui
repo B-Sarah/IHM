@@ -86,7 +86,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -114,6 +114,9 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
         <height>451</height>
        </rect>
       </property>
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
      </widget>
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
@@ -346,8 +349,8 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           <rect>
            <x>403</x>
            <y>5</y>
-           <width>51</width>
-           <height>21</height>
+           <width>64</width>
+           <height>26</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -409,13 +412,6 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
            <height>209</height>
           </rect>
          </property>
-         <zorder>checkBox</zorder>
-         <zorder>checkBox_3</zorder>
-         <zorder>label_18</zorder>
-         <zorder>textEdit_2</zorder>
-         <zorder>label_18</zorder>
-         <zorder>checkBox_3</zorder>
-         <zorder>lineEdit_4</zorder>
         </widget>
        </widget>
       </widget>
@@ -559,9 +555,6 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           <height>379</height>
          </rect>
         </property>
-        <zorder>checkBox_2</zorder>
-        <zorder>lineEdit_4</zorder>
-        <zorder>lineEdit_3</zorder>
        </widget>
       </widget>
      </widget>
@@ -572,10 +565,6 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
      <zorder>scrollArea</zorder>
      <zorder>frame_4</zorder>
      <zorder>frame_14</zorder>
-     <zorder>pushButton_2</zorder>
-     <zorder>lineEdit_4</zorder>
-     <zorder>checkBox_2</zorder>
-     <zorder>lineEdit_3</zorder>
     </widget>
     <widget class="QWidget" name="tabFilter">
      <property name="styleSheet">
@@ -620,7 +609,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QTreeView" name="treeView_2">
+       <widget class="QTreeView" name="treeViewFilter">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -629,6 +618,18 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           <height>641</height>
          </rect>
         </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <attribute name="headerVisible">
+         <bool>false</bool>
+        </attribute>
        </widget>
        <widget class="QFrame" name="frame_7">
         <property name="geometry">
@@ -854,10 +855,53 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
           </rect>
          </property>
         </widget>
-        <zorder></zorder>
-        <zorder>frame_8</zorder>
-        <zorder>label_9</zorder>
-        <zorder>listView_2</zorder>
+        <widget class="QScrollArea" name="scrollFiltering">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>721</width>
+           <height>461</height>
+          </rect>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>721</width>
+           <height>461</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>721</width>
+           <height>461</height>
+          </size>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOn</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>705</width>
+            <height>459</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -937,7 +981,7 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="rootPath">
        <property name="geometry">
         <rect>
          <x>120</x>
@@ -975,10 +1019,23 @@ var _tab = mywindow.findChild(&quot;_tab&quot;);
         <string>Root path :</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="confirm">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>74</y>
+         <width>86</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Confirm</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>

@@ -32,6 +32,7 @@ QString VisitStack::goNext(){
 }
 
 void VisitStack::goToDirectory(QString directory){
+    if(directory == currentPath) return;
     //new dir is the next one, just redirect
     if(directory == getNext()) goNext();
     //new dir is the last one, just redirect
